@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Form for booking Photographer</title>
+</head>
+<body class="form">
+
+  
+    <header class="head">
+        
+        <a href="#" class="logo"><i class="fas fa-heart"></i>&nbsp;Darbhanga wedding nd Events&nbsp;<i class="fas fa-heart"></i></a>
+      
+        <div id="menu-bar"><i class="fas fa-bars"></i></div>
+    </header>
+
+    <div id="main">
+      
+        <form name="submit-to-google-sheet">
+           
+        <h1>Book a <span>S</S></span> ervice</h1> <hr>
+        <input type="text" name="Name" placeholder="Full Name">
+        <input type="number" name="Phone-Number" placeholder="Phone Number">
+        <select type="text" name="Vendor-type" class="search-field">
+            <option disabled  selected>Select vendor type</option>
+            <option value="traditional">Traditional</option>
+            <option value="cinematic and traditional">Cinematic + Traditional both </option>
+            <option value="luxury">Luxury cinematic Wedding full video + cinematic +candid</option>
+            <option value="premium full cinemantic">premium full Cinematic video + Premium cinematic ,crane ,led wall,candid</option>
+            <option value="All events">All Events</option>
+        </select>
+        <select type="text" name="city" class="search-field">
+            <option disabled selected>City</option>
+            <option value="darbhanga">Darbhanga</option>
+            <option value="samastipur">Samastipur</option>
+            <option value="muzzaffarpur">Muzzaffarpur</option>
+            <option value="hajipur">Hajipur</option>
+            <option value="patna">Patna</option>
+            <option value="chapra">Chapra</option>
+            <option value="madhubani">Madhubani</option>
+            <option value="jaynagar">Jaynagar</option>
+            <option value="nepal">Nepal</option>
+            <option value="jhajharpur">Jhajharpur</option>
+            <option value="saharsha">Saharsha</option>
+        </select>
+        <button type="submit">submit</button>
+        <h2 id="msg"></h2>
+
+       
+        <h1>  <a href="#" class="logo"><i class="fas fa-heart"></i>&nbsp;THANK YOU &nbsp;<i class="fas fa-heart"></i></a> </h1>
+    </form>
+    
+    </div>
+    <form name="submit-to-google-sheet">
+     
+      </form>
+      
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxc9dMEC9DqhQ2HRqJthrmoI72L6jYmMUmDPadCgJVYZK1OtR_OIcrUqssAwqmAQjFiZw/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {msg.innerHTML="Message sent successfully"
+        setTimeout(function(){
+            msg.innerHTML= ""
+        }, 3000)
+        form.reset()
+        })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
